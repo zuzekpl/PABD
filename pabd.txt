@@ -1,0 +1,63 @@
+create table Test(id integer, title varchar(100));
+insert into Test(id, title) values(1, "Hello");
+select * from Test;
+-- Your code here!
+ 
+CREATE DATABASE firma_zuzelski;
+USE firma_zuzelski;
+ 
+CREATE TABLE stanowiska
+(
+id_stanowiska INT PRIMARY KEY AUTO_INCREMENT,
+nazwa VARCHAR(20) UNIQUE NOT NULL,
+pensja DECIMAL(7,2) NOT NULL,
+wyksztalcenie varchar(50)
+);
+DESCRIBE stanowiska;
+ 
+CREATE TABLE pracownicy
+( 
+id_pracownika INT PRIMARY KEY AUTO_INCREMENT,
+imie VARCHAR(20) NOT NULL,
+drugie_imie VARCHAR(20) NOT NULL,
+nazwisko VARCHAR(20) NOT NULL,
+data_ur DATE NOT NULL,
+pesel CHAR(11) UNIQUE NOT NULL, 
+miasto VARCHAR(20) NOT NULL,
+stanowisko_id INT NOT NULL REFERENCES stanowiska(id_stanowiska)
+);
+DESCRIBE pracownicy;
+ 
+INSERT INTO stanowiska(nazwa, pensja, wyksztalcenie)
+VALUES ("kierownik", 4000.00, "wyzsze");
+INSERT INTO stanowiska(nazwa, pensja, wyksztalcenie)
+VALUES ("asystent", 3200.00, "wyzsze");
+INSERT INTO stanowiska(nazwa, pensja, wyksztalcenie)
+VALUES ("sekretarka", 2500.00, "srednie");
+INSERT INTO stanowiska(nazwa, pensja, wyksztalcenie)
+VALUES ("pracownik", 2800.00, "srednie");
+INSERT INTO stanowiska(nazwa, pensja, wyksztalcenie)
+VALUES ("kierowca", 2700.00, "srednie");
+ 
+SELECT * FROM stanowiska;
+ 
+ 
+INSERT INTO pracownicy
+VALUES (1, "Anna","Katarzyna", "Nowak", "1985-04-01", "85040112345", "Sopot", 3);
+INSERT INTO pracownicy
+VALUES (2, "Jan", "Adam", "Kowalski", "1975-05-01", "75050154321", "Gdańsk", 1);
+INSERT INTO pracownicy
+VALUES (3, "Kaja", "Zofia", "Borecka", "1980-12-24", "80122454321", "Gdynia", 2);
+INSERT INTO pracownicy
+VALUES (4, "Maria","Alicja", "Borek", "1967-11-30", "67113012345", "Gdynia", 4);
+INSERT INTO pracownicy
+VALUES (5, "Marian", "Jakub", "Marczak", "1965-11-10", "65111098765", "Sopot", 4);
+INSERT INTO pracownicy
+VALUES (6, "Kajetan","Mateusz", "Grota", "1965-01-31", "65013198765", "Sopot", 5);
+INSERT INTO pracownicy
+VALUES (7, "Jakub","Maksymilian", "Kowalski", "2005-01-31", "65013221085", "Gdańsk", 8);
+SELECT * FROM pracownicy;
+ 
+ALTER TABLE pracownicy CHANGE COLUMN id_pracownika id INTEGER;
+ALTER TABLE pracownicy CHANGE COLUMN stanowisko_id stanowisko INTEGER;
+ALTER TABLE stanowiska CHANGE COLUMN wyksztalcenie wyksztalcenie VARCHAR(20);
