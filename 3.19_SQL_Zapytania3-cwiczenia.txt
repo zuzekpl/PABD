@@ -3,8 +3,8 @@ insert into Test(id, title) values(1, "Hello");
 select * from Test;
 -- Your code here!
 
-CREATE DATABASE zapytania_szulist;
-USE zapytania_szulist;
+CREATE DATABASE zapytania_zuzelski;
+USE zapytania_zuzelski;
 
 CREATE TABLE pracownicy
 (
@@ -54,7 +54,7 @@ VALUES (7, "Kacper", "Adamczyk", "1610.50", "Serwisant", "92090912468","Sopot","
 INSERT INTO pracownicy
 VALUES (8, "Kamil", "Andrzejczak", "1200.00", "Asystent","","Sopot","1989-02-03");
 INSERT INTO pracownicy
-VALUES (9, "Rafal", "Kardela", "1.00", "brak","213742069","Choroszcz","1410-07-15");
+VALUES (9, "Katarzyna", "Paciorek", "1.00", "brak","213742069","Choroszcz","1410-07-15");
 
 
 SELECT * FROM pracownicy;
