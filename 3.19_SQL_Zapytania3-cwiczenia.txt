@@ -5,6 +5,7 @@ CREATE TABLE pracownicy
 (
 id INT PRIMARY KEY AUTO_INCREMENT,
 imie VARCHAR(30) NOT NULL,
+drugie_imie VARCHAR(30) NOT NULL,
 nazwisko VARCHAR(30) NOT NULL,
 placa FLOAT(15) NOT NULL,
 stanowisko VARCHAR(30) NOT NULL,
@@ -33,23 +34,23 @@ INSERT INTO stanowiska(nazwa, pensja)
 VALUES ("kierowca", 2700.00);
 
 INSERT INTO pracownicy
-VALUES (1, "Adam","Kowalski", "1624.50", "Magazynier", "85121201234","Gdańsk","1999-02-03");
+VALUES (1, "Adam","Karol", "Kowalski", "1624.50", "Magazynier", "85121201234","Gdańsk","1999-02-03");
 INSERT INTO pracownicy
-VALUES (2, "Adam", "Nowak", "3760.00", "Kierownik", "90010111234","Gdańsk","1999-02-03");
+VALUES (2, "Adam","Michal", "Nowak", "3760.00", "Kierownik", "90010111234","Gdańsk","1999-02-03");
 INSERT INTO pracownicy
-VALUES (3, "Andrzej", "Kowalski", "4200.00", "Kierownik", "82020209876","Gdańsk","1954-02-03");
+VALUES (3, "Andrzej","Milosz", "Kowalski", "4200.00", "Kierownik", "82020209876","Gdańsk","1954-02-03");
 INSERT INTO pracownicy
-VALUES (4, "Arkadiusz","Malinowski", "1600.00", "Kierowca", "93110212345","Sopot","1963-02-03");
+VALUES (4, "Arkadiusz","Adam", "Malinowski", "1600.00", "Kierowca", "93110212345","Sopot","1963-02-03");
 INSERT INTO pracownicy
-VALUES (5, "Andrzej", "Malinowski", "1450.00", "Sprzedawca", "","Gdańsk","1999-02-03");
+VALUES (5, "Andrzej","Daniel", "Malinowski", "1450.00", "Sprzedawca", "","Gdańsk","1999-02-03");
 INSERT INTO pracownicy
-VALUES (6, "Krzysztof", "Nowicki", "1300.00", "Sprzedawca", "","Gdańsk","1967-07-03");
+VALUES (6, "Krzysztof","Hubert", "Nowicki", "1300.00", "Sprzedawca", "","Gdańsk","1967-07-03");
 INSERT INTO pracownicy
-VALUES (7, "Kacper", "Adamczyk", "1610.50", "Serwisant", "92090912468","Sopot","1999-05-03");
+VALUES (7, "Kacper","Grzegorz", "Adamczyk", "1610.50", "Serwisant", "92090912468","Sopot","1999-05-03");
 INSERT INTO pracownicy
-VALUES (8, "Kamil", "Andrzejczak", "1200.00", "Asystent","","Sopot","1989-02-03");
+VALUES (8, "Kamil","Kuba", "Andrzejczak", "1200.00", "Asystent","","Sopot","1989-02-03");
 INSERT INTO pracownicy
-VALUES (9, "Katarzyna", "Paciorek", "1.00", "brak","213742069","Choroszcz","1410-07-15");
+VALUES (9, "Katarzyna","Magda", "Paciorek", "1.00", "brak","213742069","Choroszcz","1410-07-15");
 
 
 SELECT * FROM pracownicy;
@@ -236,3 +237,20 @@ SELECT imie, nazwisko pesel FROM Uczelnia_B;
 
 SELECT imie,nazwisko FROM pracownicy WHERE imie="A%" AND placa>2000;
 
+/*zadanie 3.22 */
+SELECT LCASE (imie) FROM pracownicy;
+SELECT UCASE (nazwisko) FROM pracownicy;
+SELECT nazwisko, SUBSTRING(nazwisko, 1, 3) FROM pracownicy;
+SELECT nazwisko, RIGHT(nazwisko, 1) FROM pracownicy;
+SELECT CONCAT (imie," ",nazwisko) FROM pracownicy;
+SELECT CONCAT (imie," ",nazwisko," ",LEFT(imie, 1), ".",nazwisko, 1)FROM pracownicy;
+SELECT CONCAT (imie," ",nazwisko," ",LEFT(imie, 1), ".",LEFT(nazwisko, 1))FROM pracownicy;
+SELECT nazwisko, LENGTH(nazwisko) FROM pracownicy;
+SELECT nazwisko, REVERSE(LOWER(nazwisko)) FROM pracownicy;
+SELECT imie, nazwisko,LEFT(data_ur,4) FROM pracownicy;
+SELECT imie, nazwisko,RIGHT(data_ur,2) FROM pracownicy;
+SELECT imie, nazwisko,MID(data_ur,6,2) FROM pracownicy;
+SELECT MID(nazwisko,3,5) FROM pracownicy;
+SELECT MID(miasto,3) FROM pracownicy;
+SELECT drugie_imie, REPLACE(drugie_imie,"a","o") FROM pracownicy;
+SELECT imie,nazwisko,CONCAT(REVERSE(imie),REVERSE(nazwisko)) FROM pracownicy;
