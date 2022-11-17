@@ -1,3 +1,7 @@
+create table Test(id integer, title varchar(100));
+insert into Test(id, title) values(1, "Hello");
+select * from Test;
+-- Your code here!
 CREATE DATABASE zapytania_zuzelski;
 USE zapytania_zuzelski;
 
@@ -46,11 +50,15 @@ VALUES (5, "Andrzej","Daniel", "Malinowski", "1450.00", "Sprzedawca", "","Gdańs
 INSERT INTO pracownicy
 VALUES (6, "Krzysztof","Hubert", "Nowicki", "1300.00", "Sprzedawca", "","Gdańsk","1967-07-03");
 INSERT INTO pracownicy
-VALUES (7, "Kacper","Grzegorz", "Adamczyk", "1610.50", "Serwisant", "92090912468","Sopot","1999-05-03");
+VALUES (7, "Kacper","Grzegorz", "Adamczyk", "1610.50", "Serwisant", "92090912468","Sopot","1999-11-03");
 INSERT INTO pracownicy
 VALUES (8, "Kamil","Kuba", "Andrzejczak", "1200.00", "Asystent","","Sopot","1989-02-03");
 INSERT INTO pracownicy
-VALUES (9, "Katarzyna","Magda", "Paciorek", "1.00", "brak","213742069","Choroszcz","1410-07-15");
+VALUES(9, "Katarzyna","Magda", "Paciorek", "1.00", "brak","213742069","Choroszcz","1410-07-15");
+INSERT INTO pracownicy
+VALUES(10,"Grzegorz","Ramen", "Szulist", "5000", "Kierowca","56458956281","Brzęczyszczykowo","2010-02-27");
+INSERT INTO pracownicy
+VALUES(11,"Kuba","Paweł", "Zuzelski", "2000", "Śmieciarz","56281647281","Parowo","2015-05-29");
 
 
 SELECT * FROM pracownicy;
@@ -254,3 +262,37 @@ SELECT MID(nazwisko,3,5) FROM pracownicy;
 SELECT MID(miasto,3) FROM pracownicy;
 SELECT drugie_imie, REPLACE(drugie_imie,"a","o") FROM pracownicy;
 SELECT imie,nazwisko,CONCAT(REVERSE(imie),REVERSE(nazwisko)) FROM pracownicy;
+
+/*zadanie 3.23 */
+CREATE VIEW TWiek AS
+SELECT imie,nazwisko,YEAR(CURDATE())-YEAR(data_ur) FROM pracownicy;
+SELECT * FROM TWiek;
+
+CREATE VIEW TSredni AS
+SELECT YEAR(CURDATE())-ROUND(AVG(data_ur), 0) FROM pracownicy;
+SELECT * FROM TSredni;  
+
+CREATE VIEW TMin AS
+SELECT YEAR(CURDATE())-MAX(data_ur) FROM pracownicy;
+SELECT * FROM TMin;
+
+CREATE VIEW TMax AS
+SELECT YEAR(CURDATE())-MIN(data_ur) FROM pracownicy;
+SELECT * FROM TMax;
+
+CREATE VIEW TListopad AS
+SELECT imie, nazwisko FROM pracownicy WHERE MONTH(data_ur) = "11";
+SELECT * FROM TListopad;
+
+CREATE VIEW TLista AS
+SELECT nazwisko ="B*" FROM pracownicy WHERE MONTH(data_ur) = "11";
+SELECT * FROM TLista;
+
+CREATE VIEW TRok AS 
+SELECT imie,nazwisko FROM pracownicy WHERE YEAR(data_ur)=1965;
+SELECT * FROM TRok;
+
+CREATE VIEW TLata AS 
+SELECT imie,nazwisko FROM pracownicy WHERE YEAR(data_ur)>1959 AND YEAR(data_ur)<1970;
+SELECT * FROM TLata;
+
